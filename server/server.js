@@ -1,14 +1,17 @@
+require("dotenv").config()
+const cors = require("cors")
 const express = require('express')
 const SpotifyWebApi = require('spotify-web-api-node')
 
 const app = express()
+app.use(cors())
 
 app.post("/login", (req, res) => {
     const code = req.body.code
     const spotifyApi = new SpotifyWebApi({
         redirectUri: "http//localhost:3000",
         clientId: "3a7598dc8dd04d0c9c1c7e45610c2573",
-        clientSecret:
+        clientSecret: process.env.CLIENT_SECRET
     })
 
 
@@ -22,3 +25,5 @@ app.post("/login", (req, res) => {
         res.sendStatus(400)
     })
 })
+
+app.listen(3001)
