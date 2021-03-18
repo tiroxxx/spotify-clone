@@ -62,7 +62,8 @@ app.post("/login", (req, res) => {
             refreshToken: data.body.refresh_token,
             expiresIn: data.body.expires_in
         })
-    }).catch(() => {
+    }).catch((err) => {
+        console.log(err);
         res.sendStatus(400)
     })
 })
