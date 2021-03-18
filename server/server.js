@@ -73,7 +73,7 @@ app.get("/lyrics", async (req, res) => {
     res.json({ lyrics })
 })
 
-server.listen(PORT, () => {
+app.listen(PORT, () => {
     console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
         PORT,
         PORT);
