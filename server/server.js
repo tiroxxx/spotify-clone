@@ -7,7 +7,7 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-app.post("refresh", (req, res) => {
+app.post("/refresh", (req, res) => {
     const refreshToken = req.body.refreshToken
 
     const spotifyApi = new SpotifyWebApi({
@@ -17,13 +17,16 @@ app.post("refresh", (req, res) => {
         refreshToken
     })
 
-    spotifyApi.refreshAccessToken().then(
-        data => {
-            console.log('The access token has been refreshed!');
-
-            // Save the access token so that it's used in future calls
-            spotifyApi.setAccessToken(data.body['access_token']);
-        }).catch(() => {
+    spotifyApi
+        .refreshAccessToken()
+        .then(data => {
+            res.json({
+                accessToken: data.body.access,
+                expiresIn: data.body.expiresIn
+            })
+        })
+        .catch((err) => {
+            console.log(err);
             res.sendStatus(400)
         })
 })
