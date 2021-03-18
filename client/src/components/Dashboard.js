@@ -2,6 +2,7 @@ import Reac, { useState, useEffect } from 'react'
 import { Container, Form } from 'react-bootstrap'
 import useAuth from "../hooks/useAuth"
 import SpotifyWebApi from "spotify-web-api-node"
+import TrackSearchResult from './TrackSearchResult'
 
 const spotifyApi = new SpotifyWebApi({
     clientId: "3a7598dc8dd04d0c9c1c7e45610c2573"
@@ -11,7 +12,6 @@ export default function Dashboard({ code }) {
     const accessToken = useAuth(code)
     const [search, setSearch] = useState("")
     const [searchResults, setSearchResults] = useState([])
-    console.log(searchResults);
 
     useEffect(() => {
         if (!accessToken) return
@@ -23,23 +23,29 @@ export default function Dashboard({ code }) {
         if (!search) return setSearchResults([])
         if (!accessToken) return
 
-        spotifyApi.searchTracks(search)
-            .then(res => {
-                setSearchResults(
-                    res.body.tracks.items.map(track => {
-                        const smallestAlbumImage = track.album.images.reduce((smallest, image) => {
-                            if (image.height < smallest.height) return image
-                            return smallest
-                        }, track.album.images[0])
-                        return {
-                            artist: track.artists[0].name,
-                            title: track.name,
-                            uri: track.uri,
-                            albumUrl: smallestAlbumImage.url
-                        }
-                    })
-                )
-            })
+        let cancel = false
+
+        spotifyApi.searchTracks(search).then(res => {
+
+            if(cancel) return
+
+            setSearchResults(
+                res.body.tracks.items.map(track => {
+                    const smallestAlbumImage = track.album.images.reduce((smallest, image) => {
+                        if (image.height < smallest.height) return image
+                        return smallest
+                    }, track.album.images[0])
+                    return {
+                        artist: track.artists[0].name,
+                        title: track.name,
+                        uri: track.uri,
+                        albumUrl: smallestAlbumImage.url
+                    }
+                })
+            )
+        })
+
+        return () => cancel = true
     }, [search, accessToken])
 
     return (
@@ -51,7 +57,9 @@ export default function Dashboard({ code }) {
                 onChange={e => setSearch(e.target.value)}
             />
             <div className="flex-grow-1 my-2" style={{ overflowY: "auto" }}>
-                Songs
+                {searchResults.map(track => (
+                    <TrackSearchResult track={track} key={track.uri} />
+                ))}
             </div>
         </Container>
     )
