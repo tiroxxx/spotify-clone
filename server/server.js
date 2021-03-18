@@ -5,7 +5,7 @@ const SpotifyWebApi = require('spotify-web-api-node')
 const lyricsFinder = require("lyrics-finder")
 const path = require("path")
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3001
 
 const app = express()
 app.use(cors())
@@ -73,4 +73,8 @@ app.get("/lyrics", async (req, res) => {
     res.json({ lyrics })
 })
 
-app.listen(PORT)
+server.listen(PORT, () => {
+    console.log("==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.",
+        PORT,
+        PORT);
+})
