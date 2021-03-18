@@ -68,11 +68,11 @@ export default function Dashboard({ code }) {
                     <TrackSearchResult
                         track={track}
                         key={track.uri}
-                        chooseTrack={}
+                        chooseTrack={chooseTrack}
                     />
                 ))}
             </div>
-            <div><Player accessToken={accessToken} trackUri={ } /></div>
+            <div><Player accessToken={accessToken} trackUri={playingTrack?.uri} /></div>
         </Container>
     )
 }
