@@ -25,15 +25,16 @@ export default function Dashboard({ code }) {
 
     useEffect(() => {
         if(!playingTrack) return
-
-        axios.get("https://spotify-lyrical.herokuapp.com/lyrics", {
+        axios.get("/lyrics", {
             params: {
                 track: playingTrack.title,
                 artist: playingTrack.artist
             }
-        }).then((res) => {
+        }).then(res => {
             setLyrics(res.data.lyrics)
-        })      
+        }).catch(err => {
+            console.log(err);
+        })     
     }, [playingTrack])
 
     useEffect(() => {

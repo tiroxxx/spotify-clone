@@ -13,7 +13,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 app.use(express.static("client/build"))
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
 })
 
@@ -25,6 +25,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 app.post("/refresh", (req, res) => {
+    console.log("refreshing in");
     const refreshToken = req.body.refreshToken
 
     const spotifyApi = new SpotifyWebApi({
@@ -49,6 +50,7 @@ app.post("/refresh", (req, res) => {
 })
 
 app.post("/login", (req, res) => {
+    console.log("logging in");
     const code = req.body.code
     const spotifyApi = new SpotifyWebApi({
         redirectUri: process.env.REDIRECT_URI,
@@ -69,8 +71,7 @@ app.post("/login", (req, res) => {
 })
 
 app.get("/lyrics", async (req, res) => {
-    const lyrics = await lyricsFinder(req.query.artist, req.query.track) ||
-        "No Lyrics Found :("
+    const lyrics = await lyricsFinder(req.query.artist, req.query.track) || "No Lyrics Found :("
     res.json({ lyrics })
 })
 
