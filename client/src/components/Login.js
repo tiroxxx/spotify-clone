@@ -13,7 +13,7 @@ export default function Login() {
                 <Container id="nav-container" className="justify-content-center">
                     <Navbar className="justify-content-center" expand="sm" variant="dark">
                         <Navbar.Brand href="/">
-                            <i style={{ marginRight: "2px" }} class="fab fa-spotify"></i>Spotify Lyrical
+                            <i style={{ marginRight: "2px" }} className="fab fa-spotify"></i>Spotify Lyrical
                 </Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse className="justify-content-center" id="responsive-navbar-nav">
@@ -40,7 +40,7 @@ export default function Login() {
                 <footer id="footer">
                     <Container id="footer-container">
                         <h3 style={{ fontSize: "1.25rem", marginBottom: "20px"}}>
-                            <i style={{ marginRight: "2px" }} class="fab fa-spotify"></i>Spotify Lyrical
+                            <i style={{ marginRight: "2px" }} className="fab fa-spotify"></i>Spotify Lyrical
                         </h3>
                         <p><a className="links" href="/">Home</a></p>
                         <p><a className="links" href="/about">About</a></p>

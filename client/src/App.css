@@ -1,3 +1,9 @@
+html, body, #root {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
 .links {
     text-decoration: none;
     color: rgba(255, 255, 255, .5);
@@ -15,6 +21,7 @@
 
 #nav-container {
     max-width: 700px;
+    margin-bottom: 10px; 
 }
 
 #login-image {
@@ -60,7 +67,8 @@
 }
 
 #about-page {
-    background-color: black;
+    background-color: hsl(0, 0%, 1%);
+    height: 100%;
 }
 
 #about-section {
@@ -75,12 +83,16 @@
 .about-text {
     color: white;
     font-size: 2.5em;
-    margin-top: 70px;
+    margin-top: 50px;
+    margin-bottom: 50px;
     font-weight: 700;
 }
 
 @media (max-width: 768px) {
     .login-title {
+        font-size: 2em;
+    }
+    .about-text {
         font-size: 2em;
     }
 }
