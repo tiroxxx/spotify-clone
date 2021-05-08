@@ -1,0 +1,56 @@
+#login-page {
+    background-color: hsl(0, 1%, 1%);
+    height: 100vh;
+}
+
+#login-nav-container {
+    max-width: 700px;
+}
+
+#login-image {
+    z-index: 10;
+    background-color: black;
+    background-image: url("./images/i-love-music.jpg");
+    background-position: 52% 20%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+#login-button {
+    margin-left: 20px;
+    border-radius: 30px;
+}
+
+#login-text {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: hsl(336,98%,33%);
+    text-shadow: 2px 5px 5px black;
+}
+
+#about-page {
+    background-color: black;
+}
+
+#about-section {
+    height: 300px;
+    background-color: hsl(141,75%,46%);
+}
+
+@media (max-width: 457px) {
+    #login-image {
+        height: 85vh;
+    }
+
+    #login-button {
+        margin-top: 20px;
+        border-radius: 30px;
+    }
+}
