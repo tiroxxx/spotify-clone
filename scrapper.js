@@ -2,10 +2,13 @@ const puppeteer = require('puppeteer');
 
 async function getLyrics(artist, track) {
     try {
-        const browser = await puppeteer.launch()
+        const browser = await puppeteer.launch({
+            headless: true,
+            args: ["--no-sandbox"]
+        })
         const page = await browser.newPage()
         await page.goto('https://www.musixmatch.com/')
-
+        // interacting with the website
         await page.mouse.click(200, 50)
         await page.keyboard.type(`${track}, ${artist}`);
         await page.waitForXPath(
@@ -15,8 +18,8 @@ async function getLyrics(artist, track) {
             }
         );
         await page.mouse.click(200, 150)
-
         await page.waitForSelector('.lyrics__content__ok');
+        
         const lyricsElement = await page.$$('.lyrics__content__ok')
         const lyricsArr = []
 
