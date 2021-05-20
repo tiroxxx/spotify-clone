@@ -1,13 +1,13 @@
 const puppeteer = require('puppeteer');
 
-async function getLyrics() {
+async function getLyrics(artist, track) {
     try {
         const browser = await puppeteer.launch()
         const page = await browser.newPage()
         await page.goto('https://www.musixmatch.com/')
 
         await page.mouse.click(200, 50)
-        await page.keyboard.type('Diva, OKY, Luck Ra, Frijo');
+        await page.keyboard.type(`${track}, ${artist}`);
         await page.waitForXPath(
             '/html/body/div[7]/div/div/div/div/div/div/div/div[2]/div[2]/div/ul',
             {
@@ -38,3 +38,5 @@ async function getLyrics() {
         return
     }
 }
+
+module.exports = getLyrics;
