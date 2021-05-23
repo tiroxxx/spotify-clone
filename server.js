@@ -75,8 +75,7 @@ app.post("/login", (req, res) => {
 })
 
 app.get("/lyrics", async (req, res) => {
-    const lyrics = await getLyrics(req.query.artist, req.query.track) || "No Lyrics Found :("
-    res.json({ lyrics })
+    res.send("sorry this page has retired!")
 })
 
 app.listen(PORT, () => {
