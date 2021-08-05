@@ -1,4 +1,4 @@
-# Spotify Lyrical ![Spotify Lyrical](https://img.shields.io/github/languages/top/tiroxxx/Spotify Lyrical) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+# Spotify Lyrical ![Spotify Lyrical](https://img.shields.io/github/languages/top/tiroxxx/spotify-clone) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
   ## Description 
   Spotify Lyrical is a lyric finder for any song in spotify's library. Powered by the spotify-web-api-nope npm package to play the music and my own web scraper to find the lyrics. My scraper looks for the song in the musixmatch's website and scrapes the lyrics. Due to the speed limitiations from puppeteer (headless browser from google)  and the deployed version of this app, it can take anywhere from 5 to 15 seconds to display the lyrics. Also due to a recent change in Spotify's Terms of Service, their api can only be used by user's with Spotify Premium which was not the case when I made this app. Therefore this app will only work if the user's Spotify account has Premium activated.
   ## Table of Contents
